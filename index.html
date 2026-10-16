@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<title>Калькулятор натяжных потолков</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-name" id="companyName">—</span>
+      <span class="brand-city" id="companyCity"></span>
+    </div>
+    <a href="#calc" class="btn btn-sm btn-primary">Рассчитать</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1 id="heroTitle">Загрузка…</h1>
+      <p class="hero-sub" id="heroSubtitle"></p>
+    </div>
+  </section>
+
+  <section class="calc-section" id="calc">
+    <div class="container calc-grid">
+      <div class="card calc-form">
+        <h2>Параметры помещения</h2>
+        <div class="field-row">
+          <label>Длина, м
+            <input type="number" id="length" min="0.5" max="50" step="0.1" value="4" inputmode="decimal">
+          </label>
+          <label>Ширина, м
+            <input type="number" id="width" min="0.5" max="50" step="0.1" value="3" inputmode="decimal">
+          </label>
+          <label>Высота, м
+            <input type="number" id="height" min="2" max="10" step="0.1" value="2.7" inputmode="decimal">
+          </label>
+        </div>
+        <label>Материал полотна
+          <select id="material"></select>
+        </label>
+        <label>Тип профиля
+          <select id="profile"></select>
+        </label>
+        <div class="field-row">
+          <label>Углы
+            <input type="number" id="corners" min="0" step="1" value="4" inputmode="numeric">
+          </label>
+          <label>Светильники
+            <input type="number" id="spotlights" min="0" step="1" value="0" inputmode="numeric">
+          </label>
+          <label>Люстры
+            <input type="number" id="chandeliers" min="0" step="1" value="0" inputmode="numeric">
+          </label>
+          <label>Обходы труб
+            <input type="number" id="pipes" min="0" step="1" value="0" inputmode="numeric">
+          </label>
+        </div>
+        <div class="error-msg" id="calcError" hidden></div>
+      </div>
+
+      <aside class="card calc-result">
+        <div class="total-box">
+          <div class="total-label">Предварительная стоимость</div>
+          <div class="total-price"><span id="totalPrice">0</span> ₽</div>
+        </div>
+        <div class="details" id="detailsList"></div>
+        <button class="btn btn-primary btn-block" id="openFormBtn">Получить расчёт и оставить заявку</button>
+      </aside>
+    </div>
+  </section>
+
+  <section class="form-section" id="formSection">
+    <div class="container">
+      <div class="card form-card">
+        <h2>Оставить заявку на замер</h2>
+        <form id="requestForm" novalidate>
+          <label>Имя
+            <input type="text" id="clientName" required maxlength="100" autocomplete="name">
+          </label>
+          <label>Телефон
+            <input type="tel" id="clientPhone" required maxlength="30" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="consent" required>
+            <span>Я согласен на обработку персональных данных</span>
+          </label>
+          <div class="error-msg" id="formError" hidden></div>
+          <div class="success-msg" id="formSuccess" hidden></div>
+          <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+            <span class="btn-label">Отправить</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section" id="gallerySection" hidden>
+    <div class="container">
+      <h2>Наши работы</h2>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <div class="container">
+      <h2>О компании</h2>
+      <p id="aboutText"></p>
+    </div>
+  </section>
+
+  <section class="contacts-section">
+    <div class="container">
+      <h2>Контакты</h2>
+      <p><a id="contactPhone" href="#"></a></p>
+      <p><a id="contactEmail" href="#"></a></p>
+    </div>
+  </section>
+
+  <section class="disclaimer">
+    <div class="container">
+      <p id="disclaimerText"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span id="footerName"></span>
+  </div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
