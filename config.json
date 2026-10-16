@@ -1,0 +1,55 @@
+{
+  "mode": "demo",
+  "apiUrl": "",
+  "company": {
+    "name": "ПотолокПро",
+    "city": "Москва",
+    "heroTitle": "Рассчитайте стоимость натяжного потолка за 30 секунд",
+    "heroSubtitle": "Точный предварительный расчёт по вашим размерам",
+    "about": "Мы устанавливаем натяжные потолки с 2010 года. Собственное производство, гарантия 12 лет, монтаж за 1 день.",
+    "buttonText": "Получить расчёт и оставить заявку",
+    "phone": "+7 (999) 123-45-67",
+    "email": "info@potolokpro.ru",
+    "disclaimer": "Расчёт предварительный. Точная стоимость определяется после бесплатного замера."
+  },
+  "seo": {
+    "title": "Калькулятор натяжных потолков онлайн | ПотолокПро",
+    "description": "Рассчитайте стоимость натяжного потолка по своим размерам. Онлайн-калькулятор, замер бесплатно."
+  },
+  "calc": {
+    "minLength": 0.5,
+    "maxLength": 50,
+    "maxArea": 500,
+    "minHeight": 2,
+    "maxHeight": 10,
+    "maxCorners": 50,
+    "maxSpotlights": 100,
+    "maxChandeliers": 20,
+    "maxPipes": 30,
+    "defaultCorners": 4,
+    "installationPricePerM2": 350,
+    "includedCorners": 4,
+    "extraCornerPrice": 500,
+    "spotlightPrice": 700,
+    "chandelierPrice": 900,
+    "pipeBypassPrice": 400,
+    "minOrder": 5000,
+    "heightThreshold": 3.2,
+    "heightSurchargePercent": 15,
+    "materials": [
+      { "id": "matte",  "name": "Матовое полотно",  "pricePerM2": 550, "enabled": true },
+      { "id": "glossy", "name": "Глянцевое полотно", "pricePerM2": 650, "enabled": true },
+      { "id": "satin",  "name": "Сатиновое полотно", "pricePerM2": 600, "enabled": true }
+    ],
+    "profiles": [
+      { "id": "pvc",  "name": "ПВХ профиль",        "pricePerMeter": 250, "enabled": true },
+      { "id": "alum", "name": "Алюминиевый профиль", "pricePerMeter": 450, "enabled": true }
+    ]
+  },
+  "messenger": {
+    "type": "telegram",
+    "username": "potolokpro",
+    "template": "Здравствуйте! Меня зовут {name}. Телефон: {phone}. Предварительный расчёт: {price} ₽.\n\n{details}"
+  },
+  "images": []
+}
