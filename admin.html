@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Админ-панель</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="admin-body">
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-name" id="adminBrand">Админ-панель</span>
+    </div>
+    <div class="admin-header-actions">
+      <span class="badge" id="demoBadge" hidden>ДЕМО • localStorage</span>
+      <a class="btn btn-sm" href="index.html" target="_blank" rel="noopener">Открыть сайт</a>
+      <button class="btn btn-sm" id="resetBtn" hidden>Сброс</button>
+      <button class="btn btn-sm" id="logoutBtn" hidden>Выйти</button>
+    </div>
+  </div>
+</header>
+
+<div class="container admin-container">
+
+  <div class="card login-box" id="loginBox" hidden>
+    <h2>Вход</h2>
+    <form id="loginForm">
+      <label>Пароль
+        <input type="password" id="loginPassword" required autocomplete="current-password">
+      </label>
+      <div class="error-msg" id="loginError" hidden></div>
+      <button class="btn btn-primary" type="submit">Войти</button>
+    </form>
+  </div>
+
+  <div class="admin-content" id="adminContent" hidden>
+    <div class="tabs">
+      <button class="tab active" data-tab="settings">Настройки</button>
+      <button class="tab" data-tab="requests">Заявки</button>
+    </div>
+
+    <!-- НАСТРОЙКИ -->
+    <div class="tab-panel" id="tab-settings">
+      <details open class="card section">
+        <summary>Компания и тексты</summary>
+        <div class="grid-2">
+          <label>Название компании <input type="text" id="s_company_name"></label>
+          <label>Город <input type="text" id="s_company_city"></label>
+          <label class="span-2">Заголовок первого экрана <input type="text" id="s_heroTitle"></label>
+          <label class="span-2">Подзаголовок <input type="text" id="s_heroSubtitle"></label>
+          <label class="span-2">Описание компании <textarea id="s_about" rows="3"></textarea></label>
+          <label>Текст кнопки <input type="text" id="s_buttonText"></label>
+          <label>Телефон <input type="text" id="s_phone"></label>
+          <label>Email <input type="text" id="s_email"></label>
+          <label class="span-2">Оговорка о предварительном расчёте <textarea id="s_disclaimer" rows="2"></textarea></label>
+        </div>
+      </details>
+
+      <details open class="card section">
+        <summary>Тарифы и параметры</summary>
+        <div class="grid-2">
+          <label>Цена монтажа за м² <input type="number" id="s_installationPricePerM2" min="0" step="1"></label>
+          <label>Базовое число углов <input type="number" id="s_includedCorners" min="0" step="1"></label>
+          <label>Цена доп. угла <input type="number" id="s_extraCornerPrice" min="0" step="1"></label>
+          <label>Цена светильника <input type="number" id="s_spotlightPrice" min="0" step="1"></label>
+          <label>Цена люстры <input type="number" id="s_chandelierPrice" min="0" step="1"></label>
+          <label>Цена обхода трубы <input type="number" id="s_pipeBypassPrice" min="0" step="1"></label>
+          <label>Минимальный заказ, ₽ <input type="number" id="s_minOrder" min="0" step="1"></label>
+          <label>Порог высоты, м <input type="number" id="s_heightThreshold" min="0" step="0.1"></label>
+          <label>Наценка за высоту, % <input type="number" id="s_heightSurchargePercent" min="0" max="100" step="1"></label>
+        </div>
+
+        <h3>Материалы</h3>
+        <div id="materialsList" class="list-editor"></div>
+        <button type="button" class="btn btn-sm" id="addMaterial">+ Добавить материал</button>
+
+        <h3>Профили</h3>
+        <div id="profilesList" class="list-editor"></div>
+        <button type="button" class="btn btn-sm" id="addProfile">+ Добавить профиль</button>
+      </details>
+
+      <details open class="card section">
+        <summary>Мессенджер</summary>
+        <div class="grid-2">
+          <label>Тип
+            <select id="s_messenger_type">
+              <option value="telegram">Telegram</option>
+              <option value="vk">VK</option>
+            </select>
+          </label>
+          <label>Username / короткая ссылка
+            <input type="text" id="s_messenger_username" placeholder="username (без @)">
+          </label>
+          <label class="span-2">Шаблон сообщения
+            <textarea id="s_messenger_template" rows="4"></textarea>
+          </label>
+        </div>
+        <p class="hint">Переменные: <code>{name}</code>, <code>{phone}</code>, <code>{price}</code>, <code>{details}</code></p>
+        <h3>Предпросмотр</h3>
+        <pre id="messengerPreview" class="preview"></pre>
+      </details>
+
+      <details open class="card section">
+        <summary>SEO</summary>
+        <div class="grid-2">
+          <label class="span-2">Title <input type="text" id="s_seo_title"></label>
+          <label class="span-2">Description <textarea id="s_seo_description" rows="2"></textarea></label>
+        </div>
+      </details>
+
+      <details open class="card section">
+        <summary>Фотографии работ</summary>
+        <div id="imagesList" class="images-list"></div>
+        <label class="upload-label">
+          <input type="file" id="imageUpload" accept="image/jpeg,image/png,image/webp" multiple hidden>
+          <span class="btn btn-sm">+ Загрузить фото</span>
+        </label>
+        <p class="hint" id="imageHint">JPEG, PNG, WebP. До 5 МБ каждое.</p>
+      </details>
+
+      <div class="actions-bar">
+        <button class="btn btn-primary" id="saveBtn">Сохранить настройки</button>
+        <div class="status-msg" id="saveStatus" hidden></div>
+      </div>
+    </div>
+
+    <!-- ЗАЯВКИ -->
+    <div class="tab-panel" id="tab-requests" hidden>
+      <div class="filter-row card">
+        <label>Фильтр по статусу
+          <select id="statusFilter">
+            <option value="">Все</option>
+            <option value="new">Новая</option>
+            <option value="in_progress">В работе</option>
+            <option value="completed">Завершена</option>
+          </select>
+        </label>
+        <button class="btn btn-sm" id="refreshRequests">Обновить</button>
+      </div>
+      <div id="requestsList" class="requests-list"></div>
+    </div>
+
+  </div>
+</div>
+
+<script src="assets/js/admin.js"></script>
+</body>
+</html>
